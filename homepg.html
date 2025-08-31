@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Stylish Homepage</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+  html, body { height:100%; overflow:hidden; }
+
+  /* Video Background */
+  #bgVideo {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    z-index:-1;
+    filter: brightness(0.7);
+  }
+
+  /* Overlay content */
+  .overlay {
+    position: absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -50%);
+    text-align:center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding: 40px 60px;
+    color: white;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  h1 { font-size: 2.5rem; margin-bottom: 20px; }
+
+  /* Search Bar */
+  .search-container {
+    display:flex;
+    margin-bottom:20px;
+  }
+  .search-container input[type="text"] {
+    flex:1;
+    padding: 12px 15px;
+    border:none;
+    border-radius: 10px 0 0 10px;
+    font-size:1rem;
+  }
+  .search-container input[type="submit"] {
+    padding: 12px 20px;
+    border:none;
+    border-radius: 0 10px 10px 0;
+    background-color: #4285F4;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+  }
+
+  /* Quick Links */
+  .links {
+    display:flex;
+    justify-content: center;
+    gap:15px;
+    flex-wrap: wrap;
+  }
+  .links a {
+    padding:10px 20px;
+    border-radius:12px;
+    background: rgba(255,255,255,0.2);
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition: all 0.3s;
+  }
+  .links a:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+  }
+
+  /* Clock */
+  #clock {
+    margin-bottom:20px;
+    font-size:1.5rem;
+    font-weight:500;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Video background hosted on GitHub Pages -->
+<video autoplay muted playsinline id="bgVideo" onended="this.pause()">
+  <source src="My logo.mp4" type="video/mp4">
+</video>
+
+<div class="overlay">
+  <div id="clock"></div>
+  <h1>Hello, welcome!</h1>
+
+  <form class="search-container" action="https://www.google.com/search" method="get">
+    <input type="text" name="q" placeholder="Search Google...">
+    <input type="submit" value="Go">
+  </form>
+
+  <div class="links">
+    <a href="https://www.youtube.com" target="_blank">YouTube</a>
+    <a href="https://www.gmail.com" target="_blank">Gmail</a>
+    <a href="https://www.reddit.com" target="_blank">Reddit</a>
+  </div>
+</div>
+
+<script>
+  // Clock function
+  function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    document.getElementById('clock').innerText = hours + ':' + minutes + ' ' + ampm;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
+</body>
+</html>
